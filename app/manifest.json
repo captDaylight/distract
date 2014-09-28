@@ -33,12 +33,16 @@
         "styles/main.css"
       ],
       "js": [
+        "bower_components/jquery/jquery.min.js",
         "scripts/contentscript.js"
       ],
       "run_at": "document_end",
       "all_frames": false
     }
   ],
+  "chrome_url_overrides" : {
+    "newtab": "home.html"
+  },
   "permissions": [
     "tabs",
     "history",

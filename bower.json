@@ -1,6 +1,9 @@
 {
   "name": "distract",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "jquery": "~1.9.0",
+    "underscore": "~1.4.3"
+  },
   "devDependencies": {}
 }
