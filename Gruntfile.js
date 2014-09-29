@@ -169,6 +169,30 @@ module.exports = function (grunt) {
             }
         },
 
+        browserify: {
+            vendor: {
+                src: [],
+                dest: '.tmp/scripts/vendor.js',
+                options: {
+                    debug: true,
+                    require: ['jquery', 'lodash'],
+
+                    alias: [
+                        'lodash:underscore'
+                    ]
+                }
+            },
+            dev: {
+                src: ['<%= yeoman.app %>/scripts/main.js'],
+                dest: '.tmp/scripts/main.js',
+                options: {
+                    debug: true,
+                    external: ['jquery', 'lodash'],
+                }
+            },
+
+        },
+
         svgmin: {
             dist: {
                 files: [{
