@@ -59,7 +59,11 @@ module.exports = function (grunt) {
                     '<%= config.app %>/manifest.json',
                     '<%= config.app %>/_locales/{,*/}*.json'
                 ]
-            }
+            },
+            browserify: {
+                files: ['<%= yeoman.app %>/scripts/**/*.{js,jade}', 'test/{,*/}*.js'],
+                tasks: ['browserify:dev', 'concat:dev']
+            },
         },
 
         // Grunt server and debug server setting
