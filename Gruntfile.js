@@ -253,6 +253,19 @@ module.exports = function (grunt) {
         // concat: {
         //     dist: {}
         // },
+        concat: {
+            options: {
+                banner: '<%= banner %>'
+            },
+            dev: {
+                src: ['.tmp/scripts/vendor.js', '.tmp/scripts/main.js'],
+                dest: '.tmp/scripts/app.js'
+            },
+            dist: {
+                src: ['.tmp/scripts/vendor.js', '.tmp/scripts/main.js'],
+                dest: '.tmp/scripts/app.js'
+            }
+        },
 
         // Copies remaining files to places other tasks can use
         copy: {
@@ -276,6 +289,12 @@ module.exports = function (grunt) {
 
         // Run some tasks in parallel to speed up build process
         concurrent: {
+            server: [
+                'browserify'
+            ],
+            server: [
+                'browserify'
+            ],
             chrome: [
             ],
             dist: [
