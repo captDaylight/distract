@@ -184,7 +184,7 @@ module.exports = function (grunt) {
                 }
             },
             dev: {
-                src: ['<%= yeoman.app %>/scripts/main.js'],
+                src: ['<%= config.app %>/scripts/main.js'],
                 dest: '.tmp/scripts/main.js',
                 options: {
                     debug: true,
