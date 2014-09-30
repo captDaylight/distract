@@ -146,10 +146,7 @@ module.exports = function (grunt) {
             options: {
                 dest: '<%= config.dist %>'
             },
-            html: [
-                '<%= config.app %>/popup.html',
-                '<%= config.app %>/options.html'
-            ]
+
         },
 
         // Performs rewrites based on rev and the useminPrepare configuration
@@ -290,19 +287,14 @@ module.exports = function (grunt) {
         // Run some tasks in parallel to speed up build process
         concurrent: {
             server: [
-                'browserify'
-            ],
-            server: [
-                'browserify'
-            ],
-            chrome: [
+                'browserify:dev',
+                'browserify:vendor'
             ],
             dist: [
                 'imagemin',
-                'svgmin'
+                'svgmin',
+                'browserify'
             ],
-            test: [
-            ]
         },
 
         // Auto buildnumber, exclude debug files. smart builds that event pages
