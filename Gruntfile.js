@@ -64,8 +64,9 @@ module.exports = function (grunt) {
                 ]
             },
             browserify: {
-                files: ['<%= yeoman.app %>/scripts/**/*.{js,jade}', 'test/{,*/}*.js'],
-                tasks: ['browserify:app', 'concat:dev']
+                files: ['<%= config.app %>/scripts/**/*.{js,jade}', 'test/{,*/}*.js'],
+                tasks: ['browserify:app'],
+                options: { livereload: true }
             },
         },
 
@@ -116,13 +117,7 @@ module.exports = function (grunt) {
             options: {
                 jshintrc: '.jshintrc',
                 reporter: require('jshint-stylish')
-            },
-            all: [
-                'Gruntfile.js',
-                '<%= config.app %>/scripts/{,*/}*.js',
-                '!<%= config.app %>/scripts/vendor/*',
-                'test/spec/{,*/}*.js'
-            ]
+            }
         },
         mocha: {
             all: {
@@ -176,7 +171,7 @@ module.exports = function (grunt) {
         browserify: {
 
             app: {
-                files: { '<%= config.app %>/scripts/main.js': ['<%= config.app %>/scripts/index.js'] },
+                files: { '<%= config.app %>/scripts/main.js': ['<%= config.app %>/scripts/home.js'] },
                 options: { alias: browserifyAliasConfig, debug: true }
             },
             dist: {
@@ -333,7 +328,6 @@ module.exports = function (grunt) {
     grunt.registerTask('debug', function () {
         grunt.task.run([
             'jshint',
-            'concurrent:chrome',
             'connect:chrome',
             'watch'
         ]);
