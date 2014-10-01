@@ -14,6 +14,9 @@ module.exports = function (grunt) {
 
     // Time how long tasks take. Can help when optimizing build times
     require('time-grunt')(grunt);
+    
+    // include browserify alias to config file
+    var browserifyAliasConfig = require('./browserify.config.js');
 
     // Configurable paths
     var config = {
@@ -173,11 +176,11 @@ module.exports = function (grunt) {
         browserify: {
 
             app: {
-                files: { '<%= yeoman.app %>/src/main.js': ['<%= yeoman.app %>/src/index.js'] },
+                files: { '<%= config.app %>/scripts/main.js': ['<%= config.app %>/scripts/index.js'] },
                 options: { alias: browserifyAliasConfig, debug: true }
             },
             dist: {
-                files: { '<%= yeoman.dist %>/src/main.js': ['<%= yeoman.app %>/src/index.js'] },
+                files: { '<%= config.dist %>/scripts/main.js': ['<%= config.app %>/scripts/home.js'] },
                 options: { alias: browserifyAliasConfig }
             },
             dev: {
@@ -284,12 +287,11 @@ module.exports = function (grunt) {
         concurrent: {
             server: [
                 'browserify:dev',
-                'browserify:vendor'
             ],
             dist: [
                 'imagemin',
                 'svgmin',
-                'browserify'
+                'browserify:dist'
             ],
         },
 
