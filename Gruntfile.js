@@ -237,15 +237,14 @@ module.exports = function (grunt) {
         //         }
         //     }
         // },
-        // uglify: {
-        //     dist: {
-        //         files: {
-        //             '<%= config.dist %>/scripts/scripts.js': [
-        //                 '<%= config.dist %>/scripts/scripts.js'
-        //             ]
-        //         }
-        //     }
-        // },
+        uglify: {
+            dist: {
+                files: [{
+                    src: '<%= config.dist %>/scripts/{,*/}*.js', // source files mask
+                    expand: true // allow dynamic building
+                }]
+            }
+        },
         // concat: {
         //     dist: {}
         // },
