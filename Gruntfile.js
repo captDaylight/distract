@@ -62,7 +62,7 @@ module.exports = function (grunt) {
             },
             browserify: {
                 files: ['<%= yeoman.app %>/scripts/**/*.{js,jade}', 'test/{,*/}*.js'],
-                tasks: ['browserify:dev', 'concat:dev']
+                tasks: ['browserify:app', 'concat:dev']
             },
         },
 
@@ -171,17 +171,14 @@ module.exports = function (grunt) {
         },
 
         browserify: {
-            vendor: {
-                src: [],
-                dest: '.tmp/scripts/vendor.js',
-                options: {
-                    debug: true,
-                    require: ['jquery', 'lodash'],
 
-                    alias: [
-                        'lodash:underscore'
-                    ]
-                }
+            app: {
+                files: { '<%= yeoman.app %>/src/main.js': ['<%= yeoman.app %>/src/index.js'] },
+                options: { alias: browserifyAliasConfig, debug: true }
+            },
+            dist: {
+                files: { '<%= yeoman.dist %>/src/main.js': ['<%= yeoman.app %>/src/index.js'] },
+                options: { alias: browserifyAliasConfig }
             },
             dev: {
                 src: ['<%= config.app %>/scripts/main.js'],
@@ -190,8 +187,7 @@ module.exports = function (grunt) {
                     debug: true,
                     external: ['jquery', 'lodash'],
                 }
-            },
-
+            }
         },
 
         svgmin: {
