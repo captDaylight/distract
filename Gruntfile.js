@@ -64,7 +64,7 @@ module.exports = function (grunt) {
                 ]
             },
             browserify: {
-                files: ['<%= config.app %>/scripts/**/*.{js,jade}', 'test/{,*/}*.js'],
+                files: ['<%= config.app %>/scripts/**/*.{js,jade,jsx}', 'test/{,*/}*.js'],
                 tasks: ['browserify:app'],
                 options: { livereload: true }
             },
@@ -171,11 +171,11 @@ module.exports = function (grunt) {
         browserify: {
 
             app: {
-                files: { '<%= config.app %>/scripts/main.js': ['<%= config.app %>/scripts/home.js'] },
+                files: { '<%= config.app %>/scripts/main.js': ['<%= config.app %>/scripts/home.jsx'] },
                 options: { alias: browserifyAliasConfig, debug: true }
             },
             dist: {
-                files: { '<%= config.dist %>/scripts/main.js': ['<%= config.app %>/scripts/home.js'] },
+                files: { '<%= config.dist %>/scripts/main.js': ['<%= config.app %>/scripts/home.jsx'] },
                 options: { alias: browserifyAliasConfig }
             },
             dev: {
@@ -185,7 +185,10 @@ module.exports = function (grunt) {
                     debug: true,
                     external: ['jquery', 'lodash'],
                 }
-            }
+            },
+            options: {
+                transform: [ require('grunt-react').browserify ]
+            },
         },
 
         svgmin: {
