@@ -171,16 +171,16 @@ module.exports = function (grunt) {
         browserify: {
 
             app: {
-                files: { '<%= config.app %>/scripts/main.js': ['<%= config.app %>/scripts/home.jsx'] },
+                files: { '<%= config.app %>/src/main.js': ['<%= config.app %>/scripts/home.jsx'] },
                 options: { alias: browserifyAliasConfig, debug: true }
             },
             dist: {
-                files: { '<%= config.dist %>/scripts/main.js': ['<%= config.app %>/scripts/home.jsx'] },
+                files: { '<%= config.dist %>/src/main.js': ['<%= config.app %>/scripts/home.jsx'] },
                 options: { alias: browserifyAliasConfig }
             },
             dev: {
-                src: ['<%= config.app %>/scripts/main.js'],
-                dest: '.tmp/scripts/main.js',
+                src: ['<%= config.app %>/src/main.js'],
+                dest: '.tmp/src/main.js',
                 options: {
                     debug: true,
                     external: ['jquery', 'lodash'],

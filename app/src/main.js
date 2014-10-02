@@ -7,7 +7,7 @@ var Paultest = React.createClass({displayName: 'Paultest',
   render: function() {
     return (
 		React.DOM.div({className: "Bio"}, 
-			"paul hi test", 
+			"paul hi test test test", 
 		  	React.DOM.p({className: "Bio-text"})
 		)
     )
