@@ -52,6 +52,10 @@ module.exports = function (grunt) {
                     livereload: true
                 }
             },
+            compass: {
+                files: ['<%= config.app %>/styles/{,*/}*.{scss,sass}'],
+                tasks: ['compass:server', 'autoprefixer']
+            },
             livereload: {
                 options: {
                     livereload: '<%= connect.options.livereload %>'
@@ -111,7 +115,34 @@ module.exports = function (grunt) {
                 }]
             }
         },
-
+        // Compiles Sass to CSS and generates necessary files if requested
+        compass: {
+            options: {
+                sassDir: '<%= config.app %>/styles',
+                cssDir: '.tmp/styles',
+                generatedImagesDir: '.tmp/images/generated',
+                imagesDir: '<%= config.app %>/images',
+                javascriptsDir: '<%= config.app %>/scripts',
+                fontsDir: '<%= config.app %>/styles/fonts',
+                importPath: '<%= config.app %>/bower_components',
+                httpImagesPath: '/images',
+                httpGeneratedImagesPath: '/images/generated',
+                httpFontsPath: '/styles/fonts',
+                relativeAssets: false,
+                assetCacheBuster: false,
+                raw: 'Sass::Script::Number.precision = 10\n'
+            },
+            dist: {
+                options: {
+                    generatedImagesDir: '<%= yeoman.dist %>/public/images/generated'
+                }
+            },
+            server: {
+                options: {
+                debugInfo: true
+                }
+            }
+        },
         // Make sure code styles are up to par and there are no obvious mistakes
         jshint: {
             options: {
