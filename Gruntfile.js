@@ -315,8 +315,10 @@ module.exports = function (grunt) {
         concurrent: {
             server: [
                 'browserify:dev',
+                'compass:server'
             ],
             dist: [
+                'compass:dist',
                 'imagemin',
                 'svgmin',
                 'browserify:dist'
