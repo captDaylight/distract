@@ -14,10 +14,6 @@ var Paultest = React.createClass({
 });	
 
 React.renderComponent(
-  <Paultest
-    username="Simon"
-    bio="My name is Simon. I make websites"
-    avatar="http://simonsmith.io/assets/images/me.jpg"
-  />,
+  <Paultest/>,
   document.body
 );

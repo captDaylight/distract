@@ -15,11 +15,7 @@ var Paultest = React.createClass({displayName: 'Paultest',
 });	
 
 React.renderComponent(
-  Paultest({
-    username: "Simon", 
-    bio: "My name is Simon. I make websites", 
-    avatar: "http://simonsmith.io/assets/images/me.jpg"}
-  ),
+  Paultest(null),
   document.body
 );
 },{"react":146}],2:[function(require,module,exports){
