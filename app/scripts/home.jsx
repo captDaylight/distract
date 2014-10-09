@@ -1,10 +1,23 @@
 /** @jsx React.DOM */
 
 var React = require('react'),
-	BlockedList,
 	BlockedForm,
+	BlockedList,
 	Blocked;
 
+BlockedForm = React.createClass({
+	handleSubmit: function (e) {
+		e.preventDefault();
+		var block = this.refs.block.getDOMNode().value.trim();
+	},
+	render: function () {
+		return (
+			<form className="blockedForm" onSubmit={this.handleSubmit}>
+				<input type="text" ref="block"/>
+			</form>
+		);
+	}
+});
 
 BlockedList = React.createClass({
 	render: function () {
@@ -16,22 +29,11 @@ BlockedList = React.createClass({
 	}
 });
 
-BlockedForm = React.createClass({
-	render: function () {
-		return (
-			<form class="blockedForm">
-				<input type="text">
-			</form>
-		);
-	}
-});
-
 Blocked = React.createClass({
 	render: function() {
 		return (
 			<div className="blocked">
-				
-			  	blocked
+			  	<BlockedForm />
 			  	<BlockedList />
 			</div>
 		)

@@ -4,7 +4,8 @@
   "dependencies": {
     "jquery": "^2.1.1",
     "lodash": "^2.4.1",
-    "react":"~0.11.2"
+    "react":"~0.11.2",
+    "backbone": "*"
   },
   "devDependencies": {
     "grunt": "~0.4.1",

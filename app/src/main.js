@@ -1,27 +1,43 @@
 require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 /** @jsx React.DOM */
 
-var React = require('react');
+var React = require('react'),
+	BlockedForm,
+	BlockedList,
+	Blocked;
 
-var Blocked = React.createClass({displayName: 'Blocked',
-	render: function() {
+BlockedForm = React.createClass({displayName: 'BlockedForm',
+	handleSubmit: function (e) {
+		e.preventDefault();
+		var block = this.refs.block.getDOMNode().value.trim();
+	},
+	render: function () {
 		return (
-			React.DOM.div({className: "blocked"}, 
-				
-			  	"blocked", 
-			  	BlockedList(null)
+			React.DOM.form({className: "blockedForm", onSubmit: this.handleSubmit}, 
+				React.DOM.input({type: "text", ref: "block"})
 			)
-		)
+		);
 	}
 });
 
-var BlockedList = React.createClass({displayName: 'BlockedList',
+BlockedList = React.createClass({displayName: 'BlockedList',
 	render: function () {
 		return (
 			React.DOM.div({className: "blockedList"}, 
 				"blocked list"
 			)
 		);
+	}
+});
+
+Blocked = React.createClass({displayName: 'Blocked',
+	render: function() {
+		return (
+			React.DOM.div({className: "blocked"}, 
+			  	BlockedForm(null), 
+			  	BlockedList(null)
+			)
+		)
 	}
 });
 
