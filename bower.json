@@ -1,9 +1,0 @@
-{
-  "name": "distract",
-  "version": "0.0.0",
-  "dependencies": {
-    "jquery": "~1.9.0",
-    "lodash": "*"
-  },
-  "devDependencies": {}
-}

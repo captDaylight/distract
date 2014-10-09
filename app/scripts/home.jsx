@@ -1,19 +1,44 @@
 /** @jsx React.DOM */
 
-var React = require('react');
+var React = require('react'),
+	BlockedList,
+	BlockedForm,
+	Blocked;
 
-var Paultest = React.createClass({
-  render: function() {
-    return (
-		<div className="Bio">
-			paul hi test test test
-		  	<p className="Bio-text"></p>
-		</div>
-    )
-  }
-});	
+
+BlockedList = React.createClass({
+	render: function () {
+		return (
+			<div className="blockedList">
+				blocked list
+			</div>
+		);
+	}
+});
+
+BlockedForm = React.createClass({
+	render: function () {
+		return (
+			<form class="blockedForm">
+				<input type="text">
+			</form>
+		);
+	}
+});
+
+Blocked = React.createClass({
+	render: function() {
+		return (
+			<div className="blocked">
+				
+			  	blocked
+			  	<BlockedList />
+			</div>
+		)
+	}
+});
 
 React.renderComponent(
-  <Paultest/>,
-  document.body
+  <Blocked/>,
+  document.getElementById('blocked')
 );

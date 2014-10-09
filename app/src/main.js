@@ -3,20 +3,31 @@ require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof requ
 
 var React = require('react');
 
-var Paultest = React.createClass({displayName: 'Paultest',
-  render: function() {
-    return (
-		React.DOM.div({className: "Bio"}, 
-			"paul hi test test test", 
-		  	React.DOM.p({className: "Bio-text"})
+var Blocked = React.createClass({displayName: 'Blocked',
+	render: function() {
+		return (
+			React.DOM.div({className: "blocked"}, 
+				
+			  	"blocked", 
+			  	BlockedList(null)
+			)
 		)
-    )
-  }
-});	
+	}
+});
+
+var BlockedList = React.createClass({displayName: 'BlockedList',
+	render: function () {
+		return (
+			React.DOM.div({className: "blockedList"}, 
+				"blocked list"
+			)
+		);
+	}
+});
 
 React.renderComponent(
-  Paultest(null),
-  document.body
+  Blocked(null),
+  document.getElementById('blocked')
 );
 },{"react":146}],2:[function(require,module,exports){
 // shim for using process in browser
