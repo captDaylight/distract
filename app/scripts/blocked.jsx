@@ -83,4 +83,4 @@ Blocked = React.createClass({
 	}
 });
 
-return Blocked;
+module.exports = Blocked;

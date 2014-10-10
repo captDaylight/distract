@@ -1,5 +1,6 @@
 //third party libraries alias configurations for browserify
 module.exports = [
-    './app/bower_components/lodash/dist/lodash.js:lodash',
-    './app/bower_components/jquery/jquery.js:jquery'
+    './node_modules/lodash/dist/lodash.js:lodash',
+    './node_modules/jquery/src/jquery.js:jquery',
+    './node_modules/backbone/backbone.js:backbone'
 ];
