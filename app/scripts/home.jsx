@@ -11,6 +11,13 @@ BlockedForm = React.createClass({
 	handleSubmit: function (e) {
 		e.preventDefault();
 		var block = this.refs.block.getDOMNode().value.trim();
+
+		if (!block) {
+			return;
+		}
+
+		this.props.onBlockSubmit({url: block});
+		this.refs.block.getDOMNode().value = '';
 	},
 	render: function () {
 		return (
@@ -23,7 +30,6 @@ BlockedForm = React.createClass({
 
 BlockedList = React.createClass({
 	render: function () {
-
 		var blockedNodes = this.props.data.map(function (block) {
 			return (
 				<BlockedItem url={block.url}></BlockedItem>
@@ -40,10 +46,10 @@ BlockedList = React.createClass({
 
 BlockedItem = React.createClass({
 	removeSite: function () {
+		// TODO remove blocked site
 		console.log('removeSite');
 	},
 	render: function () {
-		console.log(this.props);
 		return (
 			<li>
 				<div className="blocked-site">{this.props.url}</div>
@@ -54,18 +60,30 @@ BlockedItem = React.createClass({
 });
 
 Blocked = React.createClass({
+	getInitialState: function () {
+		return {data: []};
+	},
+	componentDidMount: function () {
+		this.setState({data: testData});
+	},
+	handleBlockSubmit: function (data) {
+		testData.push(data);
+		this.setState({data:testData});
+	},
+	handleBlockRemove: function (data) {
+
+	},
 	render: function() {
-		
 		return (
 			<div className="blocked">
-			  	<BlockedForm />
-			  	<BlockedList data={this.props.data}/>
+			  	<BlockedForm onBlockSubmit={this.handleBlockSubmit}/>
+			  	<BlockedList data={this.state.data} onBlockRemove={this.handleBlockRemove}/>
 			</div>
 		)
 	}
 });
 
 React.renderComponent(
-  <Blocked data={testData}/>,
+  <Blocked/>,
   document.getElementById('blocked')
 );
