@@ -6,6 +6,8 @@ var React = require('react'),
 	BlockedList,
 	Blocked;
 
+var testData = [{url:'test.com'},{url:'another.test.com'}];	
+
 BlockedForm = React.createClass({displayName: 'BlockedForm',
 	handleSubmit: function (e) {
 		e.preventDefault();
@@ -22,9 +24,31 @@ BlockedForm = React.createClass({displayName: 'BlockedForm',
 
 BlockedList = React.createClass({displayName: 'BlockedList',
 	render: function () {
+
+		var blockedNodes = this.props.data.map(function (block) {
+			return (
+				BlockedItem({url: block.url})
+			);
+		});
+			
 		return (
-			React.DOM.div({className: "blockedList"}, 
-				"blocked list"
+			React.DOM.ul({className: "blockedList"}, 
+				blockedNodes
+			)
+		);
+	}
+});
+
+BlockedItem = React.createClass({displayName: 'BlockedItem',
+	removeSite: function () {
+		console.log('removeSite');
+	},
+	render: function () {
+		console.log(this.props);
+		return (
+			React.DOM.li(null, 
+				React.DOM.div({className: "blocked-site"}, this.props.url), 
+				React.DOM.div({className: "cancel", onClick: this.removeSite}, "X")
 			)
 		);
 	}
@@ -32,17 +56,18 @@ BlockedList = React.createClass({displayName: 'BlockedList',
 
 Blocked = React.createClass({displayName: 'Blocked',
 	render: function() {
+		
 		return (
 			React.DOM.div({className: "blocked"}, 
 			  	BlockedForm(null), 
-			  	BlockedList(null)
+			  	BlockedList({data: this.props.data})
 			)
 		)
 	}
 });
 
 React.renderComponent(
-  Blocked(null),
+  Blocked({data: testData}),
   document.getElementById('blocked')
 );
 },{"react":146}],2:[function(require,module,exports){

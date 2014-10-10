@@ -5,6 +5,8 @@ var React = require('react'),
 	BlockedList,
 	Blocked;
 
+var testData = [{url:'test.com'},{url:'another.test.com'}];	
+
 BlockedForm = React.createClass({
 	handleSubmit: function (e) {
 		e.preventDefault();
@@ -21,26 +23,49 @@ BlockedForm = React.createClass({
 
 BlockedList = React.createClass({
 	render: function () {
+
+		var blockedNodes = this.props.data.map(function (block) {
+			return (
+				<BlockedItem url={block.url}></BlockedItem>
+			);
+		});
+			
 		return (
-			<div className="blockedList">
-				blocked list
-			</div>
+			<ul className="blockedList">
+				{blockedNodes}
+			</ul>
+		);
+	}
+});
+
+BlockedItem = React.createClass({
+	removeSite: function () {
+		console.log('removeSite');
+	},
+	render: function () {
+		console.log(this.props);
+		return (
+			<li>
+				<div className="blocked-site">{this.props.url}</div>
+				<div className="cancel" onClick={this.removeSite}>X</div>
+			</li>
 		);
 	}
 });
 
 Blocked = React.createClass({
 	render: function() {
+		
 		return (
 			<div className="blocked">
 			  	<BlockedForm />
-			  	<BlockedList />
+			  	<BlockedList data={this.props.data}/>
 			</div>
 		)
 	}
 });
 
 React.renderComponent(
-  <Blocked/>,
+  <Blocked data={testData}/>,
   document.getElementById('blocked')
 );
