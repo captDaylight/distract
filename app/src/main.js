@@ -2,11 +2,11 @@ require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof requ
 /** @jsx React.DOM */
 
 var React = require('react'),
+	_ = require('lodash'),
 	BlockedForm,
 	BlockedList,
 	Blocked;
 
-var testData = [{url:'test.com'},{url:'another.test.com'}];	
 
 BlockedForm = React.createClass({displayName: 'BlockedForm',
 	handleSubmit: function (e) {
@@ -31,7 +31,8 @@ BlockedForm = React.createClass({displayName: 'BlockedForm',
 
 BlockedList = React.createClass({displayName: 'BlockedList',
 	render: function () {
-		var blockedNodes = this.props.data.map(function (block) {
+		console.log(this.props.data);
+		var blockedNodes = _.forEach(this.props.data, function (block) {
 			return (
 				BlockedItem({url: block.url})
 			);
@@ -65,7 +66,7 @@ Blocked = React.createClass({displayName: 'Blocked',
 		return {data: []};
 	},
 	componentDidMount: function () {
-		this.setState({data: testData});
+		this.setState({data: this.props.store.getBlocks()});
 	},
 	handleBlockSubmit: function (data) {
 		testData.push(data);
@@ -75,6 +76,7 @@ Blocked = React.createClass({displayName: 'Blocked',
 
 	},
 	render: function() {
+		console.log(this.props);
 		return (
 			React.DOM.div({className: "blocked"}, 
 			  	BlockedForm({onBlockSubmit: this.handleBlockSubmit}), 
@@ -85,7 +87,7 @@ Blocked = React.createClass({displayName: 'Blocked',
 });
 
 module.exports = Blocked;
-},{"react":149}],2:[function(require,module,exports){
+},{"lodash":undefined,"react":149}],2:[function(require,module,exports){
 /** @jsx React.DOM */
 'use strict'
 
@@ -95,16 +97,10 @@ var React = require('react'),
 	store;
 
 store = new BlockedStore();
-store.printStore();
-store.add({url:'test.com'});
-store.printStore();
-setTimeout(function(){
-	store.add({url:'test.com.aoeuaeu'});
-	store.printStore();
-}, 3000);
+store.add({url: 'test.com'});
 
 React.renderComponent(
-  Blocked(null),
+  Blocked({store: store}),
   document.getElementById('blocked')
 );
 },{"./blocked.jsx":1,"./models/blocked":3,"react":149}],3:[function(require,module,exports){
@@ -135,7 +131,11 @@ _.assign(BlockStore.prototype, {
 	},
 	printStore: function () {
 		console.log(_blocks);
+	},
+	getBlocks: function () {
+		return _.clone(_blocks, true);
 	}
+
 });
 
 module.exports = BlockStore;

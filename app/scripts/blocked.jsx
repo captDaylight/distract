@@ -1,11 +1,11 @@
 /** @jsx React.DOM */
 
 var React = require('react'),
+	_ = require('lodash'),
 	BlockedForm,
 	BlockedList,
 	Blocked;
 
-var testData = [{url:'test.com'},{url:'another.test.com'}];	
 
 BlockedForm = React.createClass({
 	handleSubmit: function (e) {
@@ -30,7 +30,8 @@ BlockedForm = React.createClass({
 
 BlockedList = React.createClass({
 	render: function () {
-		var blockedNodes = this.props.data.map(function (block) {
+		console.log(this.props.data);
+		var blockedNodes = _.forEach(this.props.data, function (block) {
 			return (
 				<BlockedItem url={block.url}></BlockedItem>
 			);
@@ -64,7 +65,7 @@ Blocked = React.createClass({
 		return {data: []};
 	},
 	componentDidMount: function () {
-		this.setState({data: testData});
+		this.setState({data: this.props.store.getBlocks()});
 	},
 	handleBlockSubmit: function (data) {
 		testData.push(data);
@@ -74,6 +75,7 @@ Blocked = React.createClass({
 
 	},
 	render: function() {
+		console.log(this.props);
 		return (
 			<div className="blocked">
 			  	<BlockedForm onBlockSubmit={this.handleBlockSubmit}/>

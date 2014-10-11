@@ -25,7 +25,11 @@ _.assign(BlockStore.prototype, {
 	},
 	printStore: function () {
 		console.log(_blocks);
+	},
+	getBlocks: function () {
+		return _.clone(_blocks, true);
 	}
+
 });
 
 module.exports = BlockStore;
