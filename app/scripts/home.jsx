@@ -3,11 +3,13 @@
 
 var React = require('react'),
 	Blocked = require('./blocked.jsx'),
-	BlockedCollection = require('./models/blockedCollection'),
-	blockedCollection;
+	BlockedStore = require('./models/blocked'),
+	store;
 
-blockedCollection = new BlockedCollection();
-console.log(blockedCollection);
+store = new BlockedStore();
+
+console.log(store);
+
 React.renderComponent(
   <Blocked/>,
   document.getElementById('blocked')

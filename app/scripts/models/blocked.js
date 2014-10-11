@@ -1,9 +1,19 @@
 var _ = require('lodash'),
-	Backbone = require('backbone'),
-	BlockedModel;
+	_blocks = {},
+	BlockStore;
 
-BlockedModel = Backbone.Model.extend({
+BlockStore = function () {};
+
+_.assign(BlockStore.prototype, {
+	connectStorage: function () {
+
+	}
+	add: function (block) {
+
+	},
+	remove: function (block) {
 	
+	}
 });
 
-module.export = BlockedModel;
+module.exports = BlockStore;
