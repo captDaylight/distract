@@ -8,7 +8,12 @@ var React = require('react'),
 
 store = new BlockedStore();
 
-console.log(store);
+store.add({url:'test.com'});
+store.printStore();
+setTimeout(function(){
+	store.add({url:'test.com.aoeuaeu'});
+	store.printStore();
+}, 3000);
 
 React.renderComponent(
   <Blocked/>,
