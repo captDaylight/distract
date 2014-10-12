@@ -32,11 +32,12 @@ BlockedForm = React.createClass({displayName: 'BlockedForm',
 BlockedList = React.createClass({displayName: 'BlockedList',
 	render: function () {
 		
-		var blockedNodes = [];
-
+		var blockedNodes = [],
+			remove = this.props.onBlockRemove;
+		
 		_.forEach(this.props.data, function (block) {
 			blockedNodes.push(
-				BlockedItem({url: block.url})
+				BlockedItem({id: block.id, url: block.url, onBlockRemove: remove})
 			);
 		});
 		
@@ -51,7 +52,8 @@ BlockedList = React.createClass({displayName: 'BlockedList',
 BlockedItem = React.createClass({displayName: 'BlockedItem',
 	removeSite: function () {
 		// TODO remove blocked site
-		console.log('removeSite');
+		console.log(this.props);
+		this.props.onBlockRemove(this.props.id);
 	},
 	render: function () {
 		return (
@@ -74,8 +76,9 @@ Blocked = React.createClass({displayName: 'Blocked',
 		this.props.store.add(data);
 		this.componentDidMount();
 	},
-	handleBlockRemove: function (data) {
-
+	handleBlockRemove: function (id) {
+		this.props.store.remove(id);
+		this.componentDidMount();
 	},
 	render: function() {		
 		return (
@@ -128,7 +131,10 @@ _.assign(BlockStore.prototype, {
 
 	},
 	remove: function (id) {
+		console.log('removing');
+		console.log(_blocks[id]);
 		delete _blocks[id];
+		console.log(_blocks[id]);
 	},
 	printStore: function () {
 		console.log(_blocks);
