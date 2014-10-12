@@ -51,14 +51,13 @@ BlockedList = React.createClass({
 BlockedItem = React.createClass({
 	removeSite: function () {
 		// TODO remove blocked site
-		console.log(this.props);
 		this.props.onBlockRemove(this.props.id);
 	},
 	render: function () {
 		return (
 			<li>
 				<div className="blocked-site">{this.props.url}</div>
-				<div className="cancel" onClick={this.removeSite}>X</div>
+				<div className="cancel btn btn-warning btn-xs" onClick={this.removeSite}>x</div>
 			</li>
 		);
 	}

@@ -1,3 +1,15 @@
+@import 'bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
+
 body{
 	background-color: white;
+}
+
+li{
+	list-style: none;
+}
+
+#blocked{
+	padding:10px;
+	width: 400px;
+	background-color: #eee;
 }

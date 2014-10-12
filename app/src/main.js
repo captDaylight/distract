@@ -52,14 +52,13 @@ BlockedList = React.createClass({displayName: 'BlockedList',
 BlockedItem = React.createClass({displayName: 'BlockedItem',
 	removeSite: function () {
 		// TODO remove blocked site
-		console.log(this.props);
 		this.props.onBlockRemove(this.props.id);
 	},
 	render: function () {
 		return (
 			React.DOM.li(null, 
 				React.DOM.div({className: "blocked-site"}, this.props.url), 
-				React.DOM.div({className: "cancel", onClick: this.removeSite}, "X")
+				React.DOM.div({className: "cancel btn btn-warning btn-xs", onClick: this.removeSite}, "x")
 			)
 		);
 	}
@@ -131,10 +130,7 @@ _.assign(BlockStore.prototype, {
 
 	},
 	remove: function (id) {
-		console.log('removing');
-		console.log(_blocks[id]);
 		delete _blocks[id];
-		console.log(_blocks[id]);
 	},
 	printStore: function () {
 		console.log(_blocks);
