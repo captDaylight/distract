@@ -30,13 +30,15 @@ BlockedForm = React.createClass({
 
 BlockedList = React.createClass({
 	render: function () {
-		console.log(this.props.data);
-		var blockedNodes = _.forEach(this.props.data, function (block) {
-			return (
+		
+		var blockedNodes = [];
+
+		_.forEach(this.props.data, function (block) {
+			blockedNodes.push(
 				<BlockedItem url={block.url}></BlockedItem>
 			);
 		});
-			
+		
 		return (
 			<ul className="blockedList">
 				{blockedNodes}
@@ -68,14 +70,13 @@ Blocked = React.createClass({
 		this.setState({data: this.props.store.getBlocks()});
 	},
 	handleBlockSubmit: function (data) {
-		testData.push(data);
-		this.setState({data:testData});
+		this.props.store.add(data);
+		this.componentDidMount();
 	},
 	handleBlockRemove: function (data) {
 
 	},
-	render: function() {
-		console.log(this.props);
+	render: function() {		
 		return (
 			<div className="blocked">
 			  	<BlockedForm onBlockSubmit={this.handleBlockSubmit}/>
