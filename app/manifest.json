@@ -44,6 +44,7 @@
         "newtab": "home.html"
     },
     "permissions": [
+        "storage",
         "tabs",
         "history",
         "http://*/*",

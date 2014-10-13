@@ -6,8 +6,12 @@ var React = require('react'),
 	BlockedStore = require('./models/blocked'),
 	store;
 
+console.log(chrome.storage);
+
 store = new BlockedStore();
 store.add({url: 'test.com'});
+
+
 
 React.renderComponent(
   <Blocked store={store}/>,
