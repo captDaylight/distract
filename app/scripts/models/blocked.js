@@ -2,7 +2,11 @@ var _ = require('lodash'),
 	_blocks = {},
 	BlockStore;
 
-BlockStore = function () {};
+BlockStore = function ( attrs ) {
+	if ( typeof arguments[0] !== 'undefined' ) { 
+		this.initStore(attrs);
+	}
+};
 
 _.assign(BlockStore.prototype, {
 	connectStorage: function () {
@@ -23,13 +27,13 @@ _.assign(BlockStore.prototype, {
 	remove: function (id) {
 		delete _blocks[id];
 	},
-	printStore: function () {
-		console.log(_blocks);
-	},
 	getBlocks: function () {
 		return _.clone(_blocks, true);
+	},
+	initStore: function (attrs) {
+		console.log('initStore');
+		_blocks = attrs;
 	}
-
 });
 
 module.exports = BlockStore;

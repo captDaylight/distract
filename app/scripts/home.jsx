@@ -6,11 +6,10 @@ var React = require('react'),
 	BlockedStore = require('./models/blocked'),
 	store;
 
-console.log(chrome.storage);
+console.log(chrome.storage.sync.get('distract', function () {console.log('test');}));
 
 store = new BlockedStore();
 store.add({url: 'test.com'});
-
 
 
 React.renderComponent(
